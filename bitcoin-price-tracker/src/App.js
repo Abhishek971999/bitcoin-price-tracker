@@ -8,7 +8,8 @@ import {
   IonContent
 } from '@ionic/react';
 import LoadingCard from './components/loadingCard/loadingCard';
-
+import BitcoinCard from './components/bitcoinCard/bitcoinCard';
+import './App.css';
 class App extends Component {
   state = {
     bitcoinInfo: {},
@@ -18,17 +19,23 @@ class App extends Component {
   async componentDidMount() {
     const bitcoinInfo = await getBitcoinPrice();
 
-    this.setState(
-      {
-        bitcoinInfo,
-        loading: false
-      },
-      () => console.log(this.state)
-    );
+    this.setState({
+      bitcoinInfo,
+      loading: false
+    });
   }
 
+  createLoadingCards = () => {
+    return (
+      <>
+        <LoadingCard />
+        <LoadingCard />
+        <LoadingCard />
+      </>
+    );
+  };
   render() {
-    const { bitcoinInfo } = this.state;
+    const { bitcoinInfo, loading } = this.state;
     return (
       <IonApp>
         <IonHeader>
@@ -37,7 +44,15 @@ class App extends Component {
           </IonToolbar>
         </IonHeader>
         <IonContent>
-          <LoadingCard />
+          <img
+            src='https://img.icons8.com/cotton/74/000000/bitcoin--v2.png">'
+            className='bitcoin__logo'
+          />
+          {loading === true
+            ? this.createLoadingCards()
+            : Object.keys(bitcoinInfo.bpi).map((item, index) => (
+                <BitcoinCard data={bitcoinInfo.bpi[item]} />
+              ))}
         </IonContent>
       </IonApp>
     );

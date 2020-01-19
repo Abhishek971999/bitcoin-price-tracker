@@ -1,0 +1,9 @@
+.ionic-card {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.582);
+  transition: all 0.5s;
+}
+
+.ionic-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.801);
+}

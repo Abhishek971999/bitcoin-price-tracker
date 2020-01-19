@@ -1,0 +1,13 @@
+ion-content {
+  --background: #2623d4;
+}
+
+ion-card {
+  --background: white !important;
+}
+
+.bitcoin__logo {
+  padding: 10px 0px;
+  display: block;
+  margin: 0 auto;
+}
